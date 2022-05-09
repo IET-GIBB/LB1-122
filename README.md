@@ -1,2 +1,2 @@
-# Projektarbeit-122
+# LB1 122 - Taschenrechner
 Projektarbeit - Abläufe mit einer Scriptsprache automatisieren
