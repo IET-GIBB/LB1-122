@@ -7,28 +7,41 @@ root.geometry('400x400')
 root.title("Calculator")
 root.iconbitmap('jose.ico')
 
+numberInTextField = ""
+
 def setTextInInputField(text):
     expression_field.delete(0, "end")
     expression_field.insert(0, text)
+
+def updateExpression(number):
+    global numberInTextField
+    numberInTextField = numberInTextField + str(number)
+    setTextInInputField(numberInTextField)
+
+def resetExpression():
+    global numberInTextField
+    numberInTextField = ""
+    numberInTextField = numberInTextField
+
 
 def chooseOperator(chosenOperator):
     global operator
     operator = chosenOperator
     setTextInInputField(chosenOperator)
 
-def isFirstNumber(firstNumber):
-    global isFirstNumber
-    isFirstNumber = not firstNumber
-    return isFirstNumber
+def setNumber(number, firstNumber):
+    global firstNumber1
+    firstNumber1 = False
+    firstNumber1 = not firstNumber
 
-def setNumber(number):
     global number1, number2
 
-    if(isFirstNumber == False):
+    if(firstNumber1 == True):
         number1 = number
+        firstNumber1 = False
     else:
         number2 = number
-    isFirstNumber(isFirstNumber)
+        firstNumber1 = True
 
 def calculation(number1, number2, operation):
     global result
@@ -46,24 +59,24 @@ def calculation(number1, number2, operation):
 
 expression_field = tk.Entry(root, width=60)
 
-button1 = tk.Button(root, text=1, height=2, width=10, bg='green', fg='white', command=lambda: [setTextInInputField("1"), setNumber(button1.cget('text'))])
-button2 = tk.Button(root, text=2, height=2, width=10, bg='green', fg='white', command=lambda: [setTextInInputField("2"), setNumber(button2.cget('text'))])
-button3 = tk.Button(root, text=3, height=2, width=10, bg='green', fg='white', command=lambda: [setTextInInputField("3"), setNumber(button3.cget('text'))])
-button4 = tk.Button(root, text=4, height=2, width=10, bg='green', fg='white', command=lambda: [setTextInInputField("4"), setNumber(button4.cget('text'))])
-button5 = tk.Button(root, text=5, height=2, width=10, bg='green', fg='white', command=lambda: [setTextInInputField("5"), setNumber(button5.cget('text'))])
-button6 = tk.Button(root, text=6, height=2, width=10, bg='green', fg='white', command=lambda: [setTextInInputField("6"), setNumber(button6.cget('text'))])
-button7 = tk.Button(root, text=7, height=2, width=10, bg='green', fg='white', command=lambda: [setTextInInputField("7"), setNumber(button7.cget('text'))])
-button8 = tk.Button(root, text=8, height=2, width=10, bg='green', fg='white', command=lambda: [setTextInInputField("8"), setNumber(button8.cget('text'))])
-button9 = tk.Button(root, text=9, height=2, width=10, bg='green', fg='white', command=lambda: [setTextInInputField("9"), setNumber(button9.cget('text'))])
-button0 = tk.Button(root, text=0, height=2, width=10, bg='green', fg='white', command=lambda: [setTextInInputField("0"), setNumber(button0.cget('text'))])
+button1 = tk.Button(root, text=1, height=2, width=10, bg='green', fg='white', command=lambda: [updateExpression(button1.cget('text')), setNumber(button1.cget('text'), firstNumber1)])
+button2 = tk.Button(root, text=2, height=2, width=10, bg='green', fg='white', command=lambda: [updateExpression(button2.cget('text')), setNumber(button2.cget('text'), firstNumber1)])
+button3 = tk.Button(root, text=3, height=2, width=10, bg='green', fg='white', command=lambda: [updateExpression(button3.cget('text')), setNumber(button3.cget('text'), firstNumber1)])
+button4 = tk.Button(root, text=4, height=2, width=10, bg='green', fg='white', command=lambda: [updateExpression(button4.cget('text')), setNumber(button4.cget('text'), firstNumber1)])
+button5 = tk.Button(root, text=5, height=2, width=10, bg='green', fg='white', command=lambda: [updateExpression(button5.cget('text')), setNumber(button5.cget('text'), firstNumber1)])
+button6 = tk.Button(root, text=6, height=2, width=10, bg='green', fg='white', command=lambda: [updateExpression(button6.cget('text')), setNumber(button6.cget('text'), firstNumber1)])
+button7 = tk.Button(root, text=7, height=2, width=10, bg='green', fg='white', command=lambda: [updateExpression(button7.cget('text')), setNumber(button7.cget('text'), firstNumber1)])
+button8 = tk.Button(root, text=8, height=2, width=10, bg='green', fg='white', command=lambda: [updateExpression(button8.cget('text')), setNumber(button8.cget('text'), firstNumber1)])
+button9 = tk.Button(root, text=9, height=2, width=10, bg='green', fg='white', command=lambda: [updateExpression(button9.cget('text')), setNumber(button9.cget('text'), firstNumber1)])
+button0 = tk.Button(root, text=0, height=2, width=10, bg='green', fg='white', command=lambda: [updateExpression(button0.cget('text')), setNumber(button0.cget('text'), firstNumber1)])
 buttonC = tk.Button(root, text="C", height=2, width=10, bg='green', fg='white', command=lambda: setTextInInputField(""))
 
 expression_field.grid(row=1, column=1, columnspan=5)
 
-plus_button = tk.Button(root, text='+', height=2, width=10, command=lambda: chooseOperator(plus_button.cget('text')))
-minus_button = tk.Button(root, text='-', height=2, width=10, command=lambda: chooseOperator(minus_button.cget('text')))
-multiply_button = tk.Button(root, text='*', height=2, width=10, command=lambda: chooseOperator(multiply_button.cget('text')))
-divide_button = tk.Button(root, text='÷', height=2, width=10, command=lambda: chooseOperator(divide_button.cget('text')))
+plus_button = tk.Button(root, text='+', height=2, width=10, command=lambda: [chooseOperator(plus_button.cget('text')), resetExpression()])
+minus_button = tk.Button(root, text='-', height=2, width=10, command=lambda: [chooseOperator(minus_button.cget('text')), resetExpression()])
+multiply_button = tk.Button(root, text='*', height=2, width=10, command=lambda: [chooseOperator(multiply_button.cget('text')), resetExpression()])
+divide_button = tk.Button(root, text='÷', height=2, width=10, command=lambda: [chooseOperator(divide_button.cget('text')), resetExpression()])
 equals_button = tk.Button(root, text='=', height=2, width=10, command=lambda: calculation(number1, number2, operator))
 
 plus_button.grid(row=2, column=4)
