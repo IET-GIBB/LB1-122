@@ -26,10 +26,12 @@ def updateExpression(number):
 
 
 def resetExpression():
-    global numberInTextField
+    global number1, number2, numberInTextField, result
     numberInTextField = ""
-    numberInTextField = numberInTextField
-
+    number1 = 0
+    number2 = 0
+    result = 0
+    setTextInInputField(numberInTextField)
 
 def chooseOperator(chosenOperator):
     global operator, firstNumber1
@@ -38,11 +40,9 @@ def chooseOperator(chosenOperator):
     firstNumber1 = False
 
 def setNumber():
-
     global number1, number2
     if firstNumber1:
         number1 = int(numberInTextField)
-
     else:
         number2 = int(numberInTextField)
 
@@ -93,7 +93,7 @@ button9 = tk.Button(root, text=9, height=2, width=10, bg='green', fg='white',
 button0 = tk.Button(root, text=0, height=2, width=10, bg='green', fg='white',
                     command=lambda: [updateExpression(button0.cget('text')),
                                      setNumber()])
-buttonC = tk.Button(root, text="C", height=2, width=10, bg='green', fg='white', command=lambda: setTextInInputField(""))
+buttonC = tk.Button(root, text="C", height=2, width=10, bg='green', fg='white', command=lambda: resetExpression())
 
 expression_field.grid(row=1, column=1, columnspan=5)
 
