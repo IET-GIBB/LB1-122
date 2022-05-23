@@ -1,16 +1,9 @@
-from os import system, name
 import math
 
 
 # clears console
 def clr():
-    # for windows
-    if name == 'nt':
-        _ = system('cls')
-
-    # for mac and linux(here, os.name is 'posix')
-    else:
-        _ = system('clear')
+    print("\n" * 100)
 
 
 operators = ["+", "-", "*", "/", "root", "square"]
@@ -29,7 +22,7 @@ def calculate(number1=None, number2=None, operator=None):
         case 5:
             return math.sqrt(number1)
         case 6:
-            return math.sqrt(number1)
+            return number1 * number1
         case _:
             return 0
 
@@ -59,11 +52,13 @@ while is_running is True:
     num1IsValid = False
     while num1IsValid is False:
         try:
+            print("Current operator: " + operators[op - 1] + "\n")
             num1 = int(input("Enter first number: "))
             if op != 5 and num1 < 0:
                 print("Can't take the root of a negative number!")
             else:
                 num1IsValid = True
+                clr()
 
         except ValueError:
             print("Enter a valid number: ")
@@ -74,21 +69,24 @@ while is_running is True:
     if op != 5 and op != 6:
         while num2IsValid is False:
             try:
+                print("Current operator: " + operators[op - 1] + "\nFirst number: " + str(num1))
                 num2 = int(input("Enter second number: "))
                 if num2 == 0:
                     print("Cannot divide by zero")
                 else:
-                    print("Result: " + str(calculate(num1, num2, op)))
+                    print(str(num1) + " " + operators[op - 1] + " " + str(num2) + " = " +
+                          str(calculate(num1, num2, op)))
                     num2IsValid = True
             except ValueError:
                 print("Enter a valid number: ")
     else:
-        print("Result: " + str(calculate(num1, num2, op)))
+        print(operators[op - 1] + " " + str(num1) + " = " + str(calculate(num1, num2, op)))
 
     choice = ""
     while choice.lower() != "y" and choice.lower() != "n":
         choice = str(input("Continue? (Y / N): "))
         if choice.lower() == "y":
             is_running = True
+            clr()
         elif choice.lower() == "n":
             is_running = False
