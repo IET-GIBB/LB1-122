@@ -13,7 +13,7 @@ def clr():
         _ = system('clear')
 
 
-operators = ["+", "-", "*", "/", "root", "pow"]
+operators = ["+", "-", "*", "/", "root", "square"]
 
 
 def calculate(num1=None, num2=None, op=None):
