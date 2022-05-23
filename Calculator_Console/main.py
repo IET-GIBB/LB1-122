@@ -54,7 +54,7 @@ while is_running is True:
         try:
             print("Current operator: " + operators[op - 1] + "\n")
             num1 = int(input("Enter first number: "))
-            if op != 5 and num1 < 0:
+            if op == 5 and num1 < 0:
                 print("Can't take the root of a negative number!")
             else:
                 num1IsValid = True
@@ -71,7 +71,7 @@ while is_running is True:
             try:
                 print("Current operator: " + operators[op - 1] + "\nFirst number: " + str(num1))
                 num2 = int(input("Enter second number: "))
-                if num2 == 0:
+                if num2 == 0 and op == 4:
                     print("Cannot divide by zero")
                 else:
                     print(str(num1) + " " + operators[op - 1] + " " + str(num2) + " = " +
