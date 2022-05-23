@@ -16,22 +16,23 @@ def clr():
 operators = ["+", "-", "*", "/", "root", "square"]
 
 
-def calculate(num1=None, num2=None, op=None):
-    match op:
+def calculate(number1=None, number2=None, operator=None):
+    match operator:
         case 1:
-            return num1 + num2
+            return number1 + number2
         case 2:
-            return num1 - num2
+            return number1 - number2
         case 3:
-            return num1 * num2
+            return number1 * number2
         case 4:
-            return num1 * num2
+            return number1 / number2
         case 5:
-            return num1 * num2
+            return math.sqrt(number1)
         case 6:
-            return num1 * num2
+            return math.sqrt(number1)
         case _:
             return 0
+
 
 # prints all available operators
 def print_operators():
@@ -59,7 +60,7 @@ while is_running is True:
     while num1IsValid is False:
         try:
             num1 = int(input("Enter first number: "))
-            if op == 5 and num1 < 0:
+            if op != 5 and num1 < 0:
                 print("Can't take the root of a negative number!")
             else:
                 num1IsValid = True
