@@ -17,19 +17,21 @@ operators = ["+", "-", "*", "/", "root", "square"]
 
 
 def calculate(num1=None, num2=None, op=None):
-    if op == 1:
-        return num1 + num2
-    if op == 2:
-        return num1 - num2
-    if op == 3:
-        return num1 * num2
-    if op == 4:
-        return num1 / num2
-    if op == 5:
-        return math.sqrt(num1)
-    if op == 6:
-        return math.pow(num1, 2)
-
+    match op:
+        case 1:
+            return num1 + num2
+        case 2:
+            return num1 - num2
+        case 3:
+            return num1 * num2
+        case 4:
+            return num1 * num2
+        case 5:
+            return num1 * num2
+        case 6:
+            return num1 * num2
+        case _:
+            return 0
 
 # prints all available operators
 def print_operators():
